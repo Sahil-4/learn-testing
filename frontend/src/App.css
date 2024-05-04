@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  text-align: center;
+}
+
+.container {
+  width: 280px;
+  margin: 7px auto;
+}
+
+.container--auth input,
+.container--auth button {
+  height: 28px;
+  width: 100%;
+  margin: 2px;
+  display: block;
+}
+
+.container--notes > button {
+  height: 28px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.container__addnote input,
+.container__addnote button {
+  height: 28px;
+  width: 70%;
+}
+
+.container__addnote button {
+  width: 30%;
+}
+
+.container__notes {
+  list-style-type: none;
+}
+
+.notes__item {
+  width: 100%;
+  border: 1px solid #000000;
+  margin: 8px 0;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+}
