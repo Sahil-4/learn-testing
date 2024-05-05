@@ -8,6 +8,8 @@ test("test:: render App", () => {
 
   // find the main div in screen
   const mainDiv = screen.getByRole("main");
+  // use get query if you dont want to continue without it
+  // if no element fount get will throw an error
 
   // check whether main div is in document or not
   expect(mainDiv).toBeInTheDocument();
@@ -41,6 +43,7 @@ test("test:: signup or login user", async () => {
   expect(inputUsername.value).toBe(username);
   expect(inputPassword.value).toBe(password);
 
+  // can be used to change between login and signup action
   let authStatus = "login";
 
   if (authStatus === "login") {
@@ -52,10 +55,14 @@ test("test:: signup or login user", async () => {
   }
 
   // check notes list in document after signup
-  const notesList = await waitFor(() => screen.getByRole("notes_container"));
+  const notesList = await screen.findByRole("notes_container");
+  // find : returns a promise with 1000ms resolve timeout
+  // it will return the element if found within 1000ms
+  // else it will throw error
   expect(notesList).toBeInTheDocument();
 });
 
+// use query if you dont want error, query will return null if no element found
 test("test:: check notes container and notes list", () => {
   // render app
   render(<App />);
@@ -72,7 +79,7 @@ test("test:: add note", async () => {
   render(<App />);
 
   // notes list (ul)
-  let noteItems = await screen.findAllByRole("note_item");
+  let noteItems = await waitFor(() => screen.queryAllByRole("note_item"));
 
   const numberOfNotes = noteItems.length;
   console.log("numberOfNotes:: ", numberOfNotes);
@@ -84,9 +91,12 @@ test("test:: add note", async () => {
   const addNoteButton = screen.getByRole("button-add_note");
 
   fireEvent.input(addNoteInput, { target: { value: "test:: new note 1" } });
-  fireEvent.click(addNoteButton); // ? wait for network request completion
+  fireEvent.click(addNoteButton);
 
-  // check notes count
-  noteItems = await waitFor(() => screen.getAllByRole("note_item"));
-  expect(noteItems.length).toBe(numberOfNotes + 1);
+  await waitFor(() => {
+    // check notes count after adding a new note
+    noteItems = screen.queryAllByRole("note_item");
+    expect(noteItems.length).toBe(numberOfNotes + 1);
+    console.log("numberOfNotes:: ", noteItems.length);
+  });
 });
