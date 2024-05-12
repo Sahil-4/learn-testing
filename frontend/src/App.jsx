@@ -57,7 +57,7 @@ function App() {
   }, [user, setUser]);
 
   return (
-    <div className="main" role="main">
+    <div className="main" aria-label="main">
       {!user && <Auth user={user} setUser={setUser} />}
       {user && <Notes />}
     </div>

@@ -28,28 +28,28 @@ function Notes() {
   }, []);
 
   return (
-    <div className="container container--notes" role="notes_container">
+    <div className="container container--notes" aria-label="notes_container">
       <h3>Notes</h3>
-      <div className="container__addnote" role="add_note_form">
+      <div className="container__addnote" aria-label="add_note_form">
         <input
           type="text"
           placeholder="add new note"
           ref={newNote}
-          role="input-new_note"
+          aria-label="input-new_note"
         />
-        <button onClick={addNote} role="button-add_note">
+        <button onClick={addNote} aria-label="button-add_note">
           Add
         </button>
       </div>
-      <ul className="container__notes" role="notes_list">
+      <ul className="container__notes" aria-label="notes_list">
         {notes?.map((noteItem) => (
-          <li key={noteItem._id} className="notes__item" role="note_item">
+          <li key={noteItem._id} className="notes__item" aria-label="note_item">
             {noteItem.note}
             <button
               onClick={() => {
                 deleteNote(noteItem._id);
               }}
-              role="button-delete_note"
+              aria-label="button-delete_note"
             >
               Delete
             </button>

@@ -28,15 +28,15 @@ function Auth({ setUser }) {
   // for the sake of simplicity I have used just one simple component to login and signup both
 
   return (
-    <div className="container container--auth" role="auth_container">
+    <div className="container container--auth" aria-label="auth_container">
       <h3>Authenticate</h3>
-      <div role="auth-form">
-        <input type="text" placeholder="username" ref={username} required role="input-username" />
-        <input type="password" placeholder="password" ref={password} required role="input-password" />
-        <button onClick={handleLogin} role="button-login">
+      <div aria-label="auth-form">
+        <input type="text" placeholder="username" ref={username} required aria-label="input-username" />
+        <input type="password" placeholder="password" ref={password} required aria-label="input-password" />
+        <button onClick={handleLogin} aria-label="button-login">
           Login
         </button>
-        <button onClick={handleSignup} role="button-signup">
+        <button onClick={handleSignup} aria-label="button-signup">
           Sign up
         </button>
       </div>
